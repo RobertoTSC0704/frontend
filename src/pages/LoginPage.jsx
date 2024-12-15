@@ -36,7 +36,7 @@ function LoginPage() {
   });
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen" aria-hidden="false">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
         {signInErrors.map((error, i) => (
           <div className="bg-red-500 p-2 my-2 text-white" key={i}>
@@ -104,8 +104,9 @@ function LoginPage() {
             <IoLogIn size={30} />
           </button>
           <ReCaptcha
-            sitekey="6Lcv-5IqAAAAAM5Ip1QiXqsguEr7GRPP7rrdmrTQ"
+            sitekey="6LdQA5wqAAAAABcM_CAmEP8sRBdnr6eMeL6JU6w-"
             onChange={(value) => setCaptchaValue(value)}
+            aria-hidden="false"
           />
         </form>
 
