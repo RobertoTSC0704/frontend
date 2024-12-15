@@ -15,7 +15,7 @@ function HomePage() {
           </p>
           <hr className="my-5 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
           <p className="text-center text-xs">
-            Derechos Reservados MGRC &#9400; 2024
+            DERECHOS RESERVADOS RTSC &#9400; 2024
           </p>
         </div>
       </div>
