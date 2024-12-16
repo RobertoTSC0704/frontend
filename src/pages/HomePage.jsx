@@ -1,20 +1,20 @@
 function HomePage() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-        <h1 className="text-3xl font-bold my-3 text-center">
-          Sistema de productos
+    <div style={{ backgroundColor: "blue", height: "100vh", color: "white" }}>
+      <div className="bg-white max-w-md w-full p-10 rounded-lg shadow-lg">
+        <h1 className="text-4xl font-bold my-3 text-center text-indigo-600">
+          Sistema de Productos
         </h1>
-        <h2 className="text-1xl font-bold my-3 text-center">
+        <h2 className="text-xl font-medium my-3 text-center text-gray-700">
           Lenguajes Web
         </h2>
         <div>
-          <p className="gap-x-2 text-justify pt-5 mt-5 text-sm">
-            Este sistema ha sido creado en la materia Topicos Selectos De Desarrollo Web
-            para la carrera en Ingeneria Informatica.
+          <p className="text-justify pt-5 mt-5 text-sm text-gray-600 leading-relaxed">
+            Este sistema ha sido creado en la materia <span className="font-semibold text-indigo-500">Tópicos Selectos de Desarrollo Web</span>
+            para la carrera en Ingeniería Informática. Proporciona herramientas modernas y eficientes para la gestión de productos.
           </p>
-          <hr className="my-5 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:opacity-100" />
-          <p className="text-center text-xs">
+          <hr className="my-5 h-px bg-gradient-to-r from-indigo-400 to-blue-400 border-0" />
+          <p className="text-center text-xs text-gray-500">
             DERECHOS RESERVADOS RTSC &#9400; 2024
           </p>
         </div>
