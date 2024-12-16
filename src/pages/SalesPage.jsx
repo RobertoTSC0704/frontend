@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSales } from '../context/SalesContext';
-import SaleCard from "../components/SaleCard";
+import SalesCard from "../components/SalesCard";
 
 function SalesPage() {
   const { getSales, sales } = useSales();
@@ -18,8 +18,8 @@ function SalesPage() {
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
       {
-        sales.map((sale) => (
-          <SaleCard sale={sale} key={sale._id} />
+        sales.map((sales) => (
+          <SalesCard sales={sales} key={sales._id} />
         ))
       }
     </div>
