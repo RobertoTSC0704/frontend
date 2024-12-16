@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoBagAdd,IoCloseSharp } from "react-icons/io5";
 
 function ProductsFormPage() {
-const server = import.meta.env.VITE_BASE_URL+"/img/";
+
   const {
     register,
     handleSubmit,
@@ -162,9 +162,9 @@ const server = import.meta.env.VITE_BASE_URL+"/img/";
           <div className="py-2 my-2">
             {selectedImage && (
               <img
-                src={server+selectedImage}
+                src={selectedImage}
                 alt="Imagen seleccionada"
-                
+
                 width={200}
                 height={200}
                 className="max-h-52 object-contain cursor-pointer"
