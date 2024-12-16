@@ -8,70 +8,82 @@ import {
   updateSaleRequest 
 } from "../api/sales";
 
+// Creamos el contexto de ventas
 const SalesContext = createContext();
 
-// eslint-disable-next-line react-refresh/only-export-components
+// Hook personalizado para acceder al contexto de ventas
 export const useSales = () => {
     const context = useContext(SalesContext);
     if (!context) {
-        throw new Error("useSales debe estar definido en un contexto");
+        throw new Error("useSales debe estar definido dentro de un SalesProvider");
     }
     return context;
 };
 
+// Componente proveedor del contexto de ventas
 export function SalesProvider({ children }) {
     const [sales, setSales] = useState([]);
     const [errors, setErrors] = useState([]); // Para manejar errores
 
+    // Función para crear una venta
     const createSale = async (sale) => {
         try {
             await createSaleRequest(sale);
-            getSales();
+            getSales(); // Vuelve a cargar las ventas después de crear una
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            const errorMessage = error.response?.data?.message || "Error desconocido";
+            setErrors(prevErrors => [...prevErrors, errorMessage]);
+            console.error(error);
         }
     };
 
+    // Función para obtener todas las ventas
     const getSales = async () => {
         try {
             const res = await getSalesRequest();
             setSales(res.data);
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            const errorMessage = error.response?.data?.message || "Error desconocido";
+            setErrors(prevErrors => [...prevErrors, errorMessage]);
+            console.error(error);
         }
     };
 
+    // Función para eliminar una venta
     const deleteSale = async (id) => {
         try {
             const res = await deleteSaleRequest(id);
             if (res.status === 200) {
-                setSales(sales.filter(sale => sale._id !== id));
+                setSales(sales.filter(sale => sale._id !== id)); // Filtra la venta eliminada
             }
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            const errorMessage = error.response?.data?.message || "Error desconocido";
+            setErrors(prevErrors => [...prevErrors, errorMessage]);
+            console.error(error);
         }
     };
 
+    // Función para obtener una venta específica
     const getSale = async (id) => {
         try {
             const res = await getSaleRequest(id);
             return res.data;
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            const errorMessage = error.response?.data?.message || "Error desconocido";
+            setErrors(prevErrors => [...prevErrors, errorMessage]);
+            console.error(error);
         }
     };
 
+    // Función para actualizar una venta
     const updateSale = async (id, sale) => {
         try {
             const res = await updateSaleRequest(id, sale);
             console.log(res);
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            const errorMessage = error.response?.data?.message || "Error desconocido";
+            setErrors(prevErrors => [...prevErrors, errorMessage]);
+            console.error(error);
         }
     };
 
@@ -92,7 +104,7 @@ export function SalesProvider({ children }) {
     );
 }
 
-// Corrección del uso de PropTypes
+// Corrección del uso de PropTypes para los children
 SalesProvider.propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.node.isRequired,  // children debe ser de tipo 'node' para mayor flexibilidad
 };
