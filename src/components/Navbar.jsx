@@ -9,7 +9,7 @@ import {
   IoChevronDownSharp,
   IoBagAdd,
   IoBagSharp,
-  IoCartSharp,
+  
 } from "react-icons/io5";
 
 function Navbar() {
@@ -69,7 +69,7 @@ function Navbar() {
                         navigate('/add-sale');
                       }}
                     >
-                      <IoCartSharp className="fill-white/30" size={30} />
+                      <IoBagAdd className="fill-white/30" size={30} />
                       Crear Venta
                     </button>
                   </MenuItem>

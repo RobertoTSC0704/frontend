@@ -30,6 +30,7 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/register" element={<RegisterPage/>}/>
+          <Route path="/sales/create" element={<SalesFormPages />} />
 
           {/*selecion de rutas protegidas*/}
           <Route element={<ProtectedRoute/>}>
