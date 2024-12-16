@@ -12,6 +12,7 @@ import {
 const SalesContext = createContext();
 
 // Hook personalizado para acceder al contexto de ventas
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSales = () => {
     const context = useContext(SalesContext);
     if (!context) {
