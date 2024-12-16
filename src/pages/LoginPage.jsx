@@ -20,7 +20,7 @@ function LoginPage() {
   const [passwordShown, setPasswordShown] = useState(false);
   const [captchaValue, setCaptchaValue] = useState(null);
   const togglePasswordVisibility = () => {
-    setPasswordShown(passwordShown ? false : true);
+    setPasswordShown(!passwordShown);
   };
   const navigate = useNavigate();
   useEffect(() => {
@@ -31,28 +31,41 @@ function LoginPage() {
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit(async (values) => {
-    //console.log(values);
     signin(values);
   });
 
   return (
-    <div className="flex items-center justify-center h-screen" aria-hidden="false">
-      <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
+    <div
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1511974035430-5de47d3b95da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div className="bg-white max-w-md w-full p-10 rounded-lg shadow-lg">
         {signInErrors.map((error, i) => (
-          <div className="bg-red-500 p-2 my-2 text-white" key={i}>
+          <div className="bg-red-500 p-2 my-2 text-white rounded-md" key={i}>
             {error}
           </div>
         ))}
         <form onSubmit={onSubmit}>
-          <h1 className="text-3xl font-bold my-3">Login</h1>
-          <label htmlFor="email">Email</label>
+          <h1 className="text-3xl font-bold text-center text-indigo-600 my-5">
+            Inicia Sesión
+          </h1>
+          <label htmlFor="email" className="block text-gray-700 font-semibold">
+            Email
+          </label>
           <input
             type="email"
-            className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            placeholder="Email"
-            defaultValue="test@gmail.com"
+            className="w-full bg-gray-100 text-gray-800 px-4 py-2 rounded-md my-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            placeholder="Introduce tu correo"
             {...register("email", {
-              required: true,
+              required: "El email es obligatorio",
               pattern: {
                 value:
                   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -60,67 +73,72 @@ function LoginPage() {
               },
             })}
           />
-          {errors.email?.type === "required" && (
-            <p className="text-red-500">Email es requerido </p>
-          )}
-          {errors.email?.message && (
-            <p className="text-red-500">Email no requerido </p>
-          )}
-          <label htmlFor="password">Password</label>
-          <div className="flex justify-end items-center relative">
+          {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+
+          <label
+            htmlFor="password"
+            className="block text-gray-700 font-semibold mt-4"
+          >
+            Contraseña
+          </label>
+          <div className="relative">
             <input
               type={passwordShown ? "text" : "password"}
-              className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-              placeholder="Password"
-              {...register("password", { required: true, minLength: 6 })}
+              className="w-full bg-gray-100 text-gray-800 px-4 py-2 rounded-md my-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              placeholder="Introduce tu contraseña"
+              {...register("password", {
+                required: "La contraseña es obligatoria",
+                minLength: {
+                  value: 6,
+                  message: "La contraseña debe tener al menos 6 caracteres",
+                },
+              })}
             />
             {passwordShown ? (
               <IoEyeSharp
-                size={30}
-                className="absolute mr-2 w-10"
+                size={24}
+                className="absolute right-3 top-3 text-gray-500 cursor-pointer"
                 onClick={togglePasswordVisibility}
               />
             ) : (
               <IoEyeOffSharp
-                size={30}
-                className="absolute mr-2 w-10"
+                size={24}
+                className="absolute right-3 top-3 text-gray-500 cursor-pointer"
                 onClick={togglePasswordVisibility}
               />
             )}
-            {errors.password?.type === "required" && (
-              <p className="text-red-500">Pasword requerido</p>
-            )}
-            {errors.password?.type === "minLength" && (
-              <p className="text-red-500">
-                La longuitud minima es de 6 caracteres
-              </p>
-            )}
           </div>
-          <button
-            className="bg-zinc-700 px-3 py-3 my-3 rounded-md"
-            type="submit"
-            disabled={!captchaValue}
-          >
-            <IoLogIn size={30} />
-          </button>
-          <ReCaptcha
-            sitekey="6LdQA5wqAAAAABcM_CAmEP8sRBdnr6eMeL6JU6w-"
-            onChange={(value) => setCaptchaValue(value)}
-            aria-hidden="false"
-          />
+          {errors.password && (
+            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          )}
+
+          <div className="flex items-center justify-between mt-4">
+            <ReCaptcha
+              sitekey="6LdQA5wqAAAAABcM_CAmEP8sRBdnr6eMeL6JU6w-"
+              onChange={(value) => setCaptchaValue(value)}
+            />
+            <button
+              type="submit"
+              className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-200"
+              disabled={!captchaValue}
+            >
+              <IoLogIn size={20} className="inline-block mr-2" /> Entrar
+            </button>
+          </div>
         </form>
 
-        <div className="flex gap-x-2 justify-between pt-5 mt-5">
-          ¿No tienes una cuenta?
-          <Link to="/register" className="text-sky-500">
-            <div className="flex mx-2 px-2 items-start">
-              !Crea una!
-              <IoPersonAdd size={30} className="mx-1" />
-            </div>
+        <div className="flex items-center justify-between mt-6">
+          <p className="text-gray-700">¿No tienes una cuenta?</p>
+          <Link
+            to="/register"
+            className="text-indigo-600 hover:underline flex items-center"
+          >
+            Crear cuenta <IoPersonAdd size={20} className="ml-1" />
           </Link>
         </div>
       </div>
     </div>
   );
 }
+
 export default LoginPage;
