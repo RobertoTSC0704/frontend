@@ -43,7 +43,7 @@ export default SalesCard;
 
 SalesCard.propTypes = {
     sale: PropTypes.shape({
-        
+        _id: PropTypes.string.isRequired,
         clientName: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         quantity: PropTypes.number.isRequired,
