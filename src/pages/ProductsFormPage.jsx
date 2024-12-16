@@ -164,6 +164,7 @@ const server = import.meta.env.VITE_BASE_URL+"/img/";
               <img
                 src={server+selectedImage}
                 alt="Imagen seleccionada"
+                
                 width={200}
                 height={200}
                 className="max-h-52 object-contain cursor-pointer"
