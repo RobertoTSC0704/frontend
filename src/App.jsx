@@ -39,7 +39,6 @@ function App() {
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/products" element={<ProductsPage/>}/>
             <Route path="/sales" element={<SalesPage/>}/>
-            <Route path="/sales/create" element={<SalesFormPages />} />
             <Route path="/add-product" element={<ProductsFormPage/>}/>
             <Route path="/products/:id" element={<ProductsFormPage/>}/>
             <Route path="/add-sale" element={<SalesFormPages/>}/>
