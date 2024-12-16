@@ -57,9 +57,9 @@ function ProductsFormPage() {
     formData.append('year',data.year);
     formData.append('image',data.image);
 
-    if (data.image =="/src/assets/addphoto.svg"){
-      productErrors.push("no se ha elegido una imagen");
-      return
+    if (!data.image && !existingImageUrl) {
+      alert("Debe seleccionar una imagen.");
+      return;
     }
 
     try {
