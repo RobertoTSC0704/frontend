@@ -1,9 +1,17 @@
 function HomePage() {
   return (
-    <div style={{ backgroundColor: "blue", height: "100vh", color: "white" }}>
-      <div className="bg-white max-w-md w-full p-10 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold my-3 text-center text-indigo-600">
-          Sistema de Productos
+    <div
+    style={{
+      backgroundColor: "blue",
+      height: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "white",
+    }}
+  >
+    <div className="bg-white max-w-md w-full p-10 rounded-lg shadow-lg">
+      <h1 className="text-4xl font-bold my-3 text-center text-indigo-600">
         </h1>
         <h2 className="text-xl font-medium my-3 text-center text-gray-700">
           Lenguajes Web
