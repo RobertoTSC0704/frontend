@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage';
 import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage'
 import SalesFormPages from './pages/SalesFormPages';
+import SalesPage from './pages/SalesFormPages';
 import ProfilePage from './pages/ProfilePage'
 import ProductsPage from './pages/ProductsPage'
 import ProductsFormPage from './pages/ProductsFormPage'
@@ -34,9 +35,10 @@ function App() {
           <Route element={<ProtectedRoute/>}>
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/products" element={<ProductsPage/>}/>
+            <Route path="/sales" element={<SalesPage/>}/>
             <Route path="/add-product" element={<ProductsFormPage/>}/>
             <Route path="/products/:id" element={<ProductsFormPage/>}/>
-            <Route path="/add-product" element={<SalesFormPages/>}/>
+            <Route path="/add-sale" element={<SalesFormPages/>}/>
           </Route>
           <Route path='*' element={<NotFound/>}/>
           </Routes>
