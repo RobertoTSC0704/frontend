@@ -27,7 +27,7 @@ function SalesFormPage() {
       if (params.id) {
         try {
           const sale = await getSale(params.id);
-          setValue("clientName", sale.clientName);
+          setValue("productName", sale.productName);
           setValue("price", sale.price);
           setValue("quantity", sale.quantity);
         } catch (error) {
@@ -62,12 +62,12 @@ function SalesFormPage() {
           </div>
         ))}
         <form onSubmit={onSubmit}>
-          <label htmlFor="clientName">Nombre del Cliente</label>
+          <label htmlFor="productName">Nombre del Producto</label>
           <input
             type="text"
-            id="clientName"
+            id="productName"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            placeholder="Nombre del cliente"
+            placeholder="Nombre del producto"
             {...register("clientName", { required: true })}
             autoFocus
           />
