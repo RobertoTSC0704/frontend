@@ -9,6 +9,7 @@ import ProfilePage from './pages/ProfilePage'
 import ProductsPage from './pages/ProductsPage'
 import ProductsFormPage from './pages/ProductsFormPage'
 import ProtectedRoute from './ProtectedRoute';
+import CatalogoPage from './pages/CatalogoPage';
 import {ProductsProvider} from './context/ProductContext';
 import NavBar from './components/Navbar';
 import NotFound from './pages/NotFound';
@@ -32,21 +33,18 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/register" element={<RegisterPage/>}/>
-                     
           
-       
-  
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/add-product" element={<ProductsFormPage />} />
-        <Route path="/sales" element={<SalesPage />} />
-        <Route path="/add-sale" element={<SalesFormPages />} />
-      
+                     
 
           {/*selecion de rutas protegidas*/}
           <Route element={<ProtectedRoute/>}>
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/add-product" element={<ProductsFormPage/>}/>
             <Route path="/products/:id" element={<ProductsFormPage/>}/>
+            <Route path="/sales" element={<SalesPage />} />
+            <Route path="/add-sale" element={<SalesFormPages />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/catalogo" element={<CatalogoPage />} />
            
           </Route>
           <Route path='*' element={<NotFound/>}/>

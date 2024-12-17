@@ -1,6 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/react";
 import {
   IoPersonAdd,
   IoLogIn,
@@ -13,19 +18,17 @@ import {
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Define navigate
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between items-center py-5 px-10 rounded-lg">
-      {/* Título principal */}
       <Link to={isAuthenticated ? "/products" : "/"}>
         <h1 className="text-2xl font-bold">Productos</h1>
       </Link>
-
-      {/* Menú */}
       <ul className="flex gap-x-4 items-center">
         {isAuthenticated ? (
           <>
+            {/* Usuario autenticado */}
             <li className="flex items-center mx-3 px-3 text-white">
               <IoPerson size={30} />
               <span className="ml-2">{user?.username || "Administrador"}</span>
@@ -47,7 +50,7 @@ function Navbar() {
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate("/products");
+                        navigate("/product");
                       }}
                     >
                       <IoBagSharp className="fill-white/30" size={30} />
@@ -55,7 +58,7 @@ function Navbar() {
                     </button>
                   </MenuItem>
 
-                  {/* Agregar Producto */}
+                  {/* Agregar Productos */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
@@ -68,40 +71,28 @@ function Navbar() {
                     </button>
                   </MenuItem>
 
-                  {/* Listar Ventas */}
+                  {/* Nuevo: Enlace al Catálogo */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate("/sales");
+                        navigate("/catalogo");
                       }}
                     >
                       <IoBagSharp className="fill-white/30" size={30} />
-                      Listar Ventas
+                      Ver Catálogo
                     </button>
                   </MenuItem>
 
-                  {/* Listar Ventas */}
-                  <MenuItem>
-                    <button
-                      className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
-                      onClick={() => {
-                        navigate("/add-product");
-                      }} 
-                    >
-                      <IoBagAdd className="fill-white/30" size={30} />
-                      Crear Venta
-                    </button>
-                  </MenuItem>
+                  {/* Línea divisora */}
                   <div className="my-1 h-px bg-white/5" />
-  
+
+                  {/* Salir */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate("sales")
                         logout();
-                        navigate("/login");
                       }}
                     >
                       <IoLogOut className="size-4 fill-white/30" />
@@ -114,7 +105,7 @@ function Navbar() {
           </>
         ) : (
           <>
-            {/* Iniciar sesión */}
+            {/* Usuario no autenticado */}
             <li>
               <Link
                 to="/login"
@@ -124,8 +115,6 @@ function Navbar() {
                 <span className="ml-2">Iniciar sesión</span>
               </Link>
             </li>
-
-            {/* Registrarse */}
             <li>
               <Link
                 to="/register"
