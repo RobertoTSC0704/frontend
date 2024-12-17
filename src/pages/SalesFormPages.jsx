@@ -1,6 +1,6 @@
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useSales } from "../context/SalesContext";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IoBagAdd, IoCloseSharp } from "react-icons/io5";
 
@@ -12,9 +12,9 @@ function SalesFormPage() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      clientName: '',
+      productName: '',
       price: 0.0,
-      quantity: 1,
+      quantity: 0,
     },
   });
 
@@ -39,11 +39,16 @@ function SalesFormPage() {
   }, [params.id, getSale, setValue]);
 
   const onSubmit = handleSubmit(async (data) => {
+    const formData = new FormData();
+    formData.append('productName', data.productName);
+    formData.append('price', data.price);
+    formData.append('quantity', data.quantity);
+
     try {
       if (params.id) {
-        await updateSale(params.id, data);
+        await updateSale(params.id, formData);
       } else {
-        await createSale(data);
+        await createSale(formData);
       }
       navigate("/sales");
     } catch (error) {
@@ -55,52 +60,51 @@ function SalesFormPage() {
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-        <h1 className="text-3xl font-bold my-2">Ventas</h1>
+        <h1 className="text-3xl from-bold my-2">Ventas</h1>
         {saleErrors?.map((error, i) => (
           <div className="text-red-500 py-2 my-2" key={i}>
             {error}
           </div>
         ))}
         <form onSubmit={onSubmit}>
-          <label htmlFor="productName">Nombre del Producto</label>
+          <label htmlFor="productName">Nombre</label>
           <input
             type="text"
             id="productName"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
             placeholder="Nombre del producto"
-            {...register("clientName", { required: true })}
+            {...register("productName", { required: true })}
             autoFocus
           />
-          {errors.clientName && (
-            <div className="text-red-500 text-sm">El nombre del cliente es requerido</div>
+          {errors.productName && (
+            <div className="text-red-500 text-sm">Nombre de la venta es requerido</div>
           )}
 
           <label htmlFor="price">Precio</label>
           <input
             type="number"
-            step="0.01"
+            step="0.10"
             id="price"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            placeholder="Precio de la venta"
+            placeholder="Precio del producto"
             {...register("price", {
-              required: "El precio es requerido",
-              min: 0.01,
+              required: true,
+              min: 0.0,
               valueAsNumber: true,
             })}
           />
           {errors.price && (
-            <div className="text-red-500 text-sm">El precio de la venta es requerido</div>
+            <div className="text-red-500 text-sm">Precio del producto es requerido</div>
           )}
           {errors.price?.type === "min" && (
-            <div className="text-red-500 text-sm">El precio mínimo es de 0.01</div>
+            <div className="text-red-500 text-sm">El precio mínimo es de 0</div>
           )}
 
           <label htmlFor="quantity">Cantidad</label>
           <input
             type="number"
-            id="quantity"
             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-            placeholder="Cantidad de productos"
+            placeholder="Cantidad del producto"
             {...register("quantity", {
               required: true,
               min: 1,
@@ -108,7 +112,7 @@ function SalesFormPage() {
             })}
           />
           {errors.quantity && (
-            <div className="text-red-500 text-sm">La cantidad es requerida</div>
+            <div className="text-red-500 text-sm">Cantidad del producto es requerida</div>
           )}
           {errors.quantity?.type === "min" && (
             <div className="text-red-500 text-sm">La cantidad mínima es de 1</div>
