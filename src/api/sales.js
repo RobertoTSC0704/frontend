@@ -7,16 +7,15 @@ export const getSalesRequest = () => axios.get('/sales');
 export const getSaleRequest = (id) => axios.get('/sales/' + id);
 
 // Llamada al API para agregar una venta
-export const createSaleRequest = (sale) =>
+export const createSaleRequest = (sale) => 
   axios.post('/sales', sale, {
     headers: {
-      'Content-Type': 'application/json', // JSON en lugar de multipart/form-data
-    },
+      'Content-Type': 'multipart/form-data' // Si vas a enviar un archivo en el formulario
+    }
   });
 
 // Llamada al API para eliminar una venta
 export const deleteSaleRequest = (id) => axios.delete('/sales/' + id);
 
 // Llamada al API para editar una venta
-export const updateSaleRequest = (id, sale) =>
-  axios.put('/sales/' + id, sale);
+export const updateSaleRequest = (id, sale) => axios.put('/sales/' + id, sale);
