@@ -110,7 +110,7 @@ function RegisterPage() {
           )}
 
           {registerErrors.length > 0 && (
-            <div className="bg-red-500 p-2 my-2 text-white rounded-lg">
+            <div className="bg-red-500 p-2 my-2 text-black rounded-lg">
               {registerErrors.map((error, i) => (
                 <p key={i}>{error}</p>
               ))}
@@ -118,7 +118,7 @@ function RegisterPage() {
           )}
 
           <button
-            className="w-full bg-indigo-600 text-white px-4 py-3 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+            className="w-full bg-indigo-600 text-black px-4 py-3 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
             type="submit"
             disabled={!captchaValue}
           >
