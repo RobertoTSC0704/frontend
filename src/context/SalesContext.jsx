@@ -1,10 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { createSaleRequest, 
-         getSalesRequest, 
-         deleteSaleRequest, 
-         getSaleRequest, 
-         updateSaleRequest } from "../api/sales";
+import { createSaleRequest, getSalesRequest, deleteSaleRequest, getSaleRequest, updateSaleRequest } from "../api/sales";
 
 const SalesContext = createContext();
 
@@ -24,20 +20,20 @@ export function SalesProvider({ children }) {
     const createSale = async (sale) => {
         try {
             await createSaleRequest(sale);
-            getSales();
+            getSales(); // Llamar a getSales después de crear la venta
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            setErrors(error.response?.data?.message || error.message);
+            console.log("Error al crear venta:", error);
         }
     };
 
     const getSales = async () => {
         try {
             const res = await getSalesRequest();
-            setSales(res.data);
+            setSales(res.data); // Asegúrate de que res.data contiene las ventas
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            setErrors(error.response?.data?.message || error.message);
+            console.log("Error al obtener las ventas:", error);
         }
     };
 
@@ -48,8 +44,8 @@ export function SalesProvider({ children }) {
                 setSales(sales.filter(sale => sale._id !== id));
             }
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            setErrors(error.response?.data?.message || error.message);
+            console.log("Error al eliminar venta:", error);
         }
     };
 
@@ -58,18 +54,18 @@ export function SalesProvider({ children }) {
             const res = await getSaleRequest(id);
             return res.data;
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            setErrors(error.response?.data?.message || error.message);
+            console.log("Error al obtener una venta:", error);
         }
     };
 
     const updateSale = async (id, sale) => {
         try {
             const res = await updateSaleRequest(id, sale);
-            console.log(res);
+            console.log("Venta actualizada:", res);
         } catch (error) {
-            setErrors(error.response.data.message);
-            console.log(error);
+            setErrors(error.response?.data?.message || error.message);
+            console.log("Error al actualizar venta:", error);
         }
     };
 

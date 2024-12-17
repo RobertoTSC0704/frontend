@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   IoPersonAdd,
   IoLogIn,
@@ -9,7 +9,6 @@ import {
   IoChevronDownSharp,
   IoBagAdd,
   IoBagSharp,
-  
 } from "react-icons/io5";
 
 function Navbar() {
@@ -18,15 +17,18 @@ function Navbar() {
 
   return (
     <nav className="bg-zinc-700 my-3 flex justify-between items-center py-5 px-10 rounded-lg">
-      <Link to={isAuthenticated ? '/products' : '/'}>
+      {/* Título principal */}
+      <Link to={isAuthenticated ? "/products" : "/"}>
         <h1 className="text-2xl font-bold">Productos</h1>
       </Link>
+
+      {/* Menú */}
       <ul className="flex gap-x-4 items-center">
         {isAuthenticated ? (
           <>
             <li className="flex items-center mx-3 px-3 text-white">
               <IoPerson size={30} />
-              <span className="ml-2">{user?.username || 'Administrador'}</span>
+              <span className="ml-2">{user?.username || "Administrador"}</span>
             </li>
             <li>
               <Menu>
@@ -40,45 +42,66 @@ function Navbar() {
                   anchor="bottom end"
                   className="w-52 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
                 >
+                  {/* Listar Productos */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate('/product');
+                        navigate("/products");
                       }}
                     >
                       <IoBagSharp className="fill-white/30" size={30} />
                       Listar Productos
                     </button>
                   </MenuItem>
+
+                  {/* Agregar Producto */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate('/add-product');
+                        navigate("/add-product");
                       }}
                     >
                       <IoBagAdd className="fill-white/30" size={30} />
                       Agregar Producto
                     </button>
                   </MenuItem>
+
+                  {/* Listar Ventas */}
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate('/add-sale');
+                        navigate("/sales");
                       }}
+                    >
+                      <IoBagSharp className="fill-white/30" size={30} />
+                      Listar Ventas
+                    </button>
+                  </MenuItem>
+
+                  {/* Listar Ventas */}
+                  <MenuItem>
+                    <button
+                      className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
+                      onClick={() => {
+                        navigate("/add-product");
+                      }} 
                     >
                       <IoBagAdd className="fill-white/30" size={30} />
                       Crear Venta
                     </button>
                   </MenuItem>
                   <div className="my-1 h-px bg-white/5" />
+  
                   <MenuItem>
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
+                        navigate("sales")
                         logout();
+                        navigate("/login");
                       }}
                     >
                       <IoLogOut className="size-4 fill-white/30" />
@@ -91,6 +114,7 @@ function Navbar() {
           </>
         ) : (
           <>
+            {/* Iniciar sesión */}
             <li>
               <Link
                 to="/login"
@@ -100,6 +124,8 @@ function Navbar() {
                 <span className="ml-2">Iniciar sesión</span>
               </Link>
             </li>
+
+            {/* Registrarse */}
             <li>
               <Link
                 to="/register"

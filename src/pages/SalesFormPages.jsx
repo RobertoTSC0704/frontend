@@ -181,14 +181,16 @@ function SalesFormPage() {
             {errors.image && <p className="text-red-500 text-sm">Imagen de la venta es requerida</p>}
           </div>
 
-          <button className="bg-green-300 hover:bg-green-500 text-white font-semibold py-2 px-4 border border-zinc-500 hover:border-transparent rounded">
+          <button className="bg-green-300 hover:bg-green-500
+           text-white font-semibold hover:text-gray-100 
+           py-2 px-4 border border-zinc-500 hover:border-transparent rounded">
             <IoBagAdd size={30} />
           </button>
-          <button
-            className="bg-red-300 hover:bg-red-500 text-white font-semibold py-2 px-4 border border-zinc-500 hover:border-transparent rounded"
-            onClick={() => { navigate('/sales') }}
-          >
-            <IoCloseSharp size={30} />
+          <button className="bg-red-300 hover:bg-green-500
+           text-white font-semibold hover:text-gray-100 
+           py-2 px-4 border border-zinc-500 hover:border-transparent rounded"
+            onClick={()=>{navigate('/product')}}>
+            <IoCloseSharp  size={30} />
           </button>
         </form>
       </div>
