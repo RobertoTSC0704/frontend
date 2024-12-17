@@ -50,7 +50,7 @@ function Navbar() {
                     <button
                       className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
                       onClick={() => {
-                        navigate("/product");
+                        navigate("/products");
                       }}
                     >
                       <IoBagSharp className="fill-white/30" size={30} />

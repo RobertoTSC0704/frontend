@@ -3,8 +3,6 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import { AuthProvider } from './context/AuthContext';
 import HomePage from './pages/HomePage'
-import SalesFormPages from './pages/SalesFormPages';
-import SalesPage from './pages/SalesFormPages';
 import ProfilePage from './pages/ProfilePage'
 import ProductsPage from './pages/ProductsPage'
 import ProductsFormPage from './pages/ProductsFormPage'
@@ -38,11 +36,10 @@ function App() {
 
           {/*selecion de rutas protegidas*/}
           <Route element={<ProtectedRoute/>}>
+          
             <Route path="/profile" element={<ProfilePage/>}/>
             <Route path="/add-product" element={<ProductsFormPage/>}/>
             <Route path="/products/:id" element={<ProductsFormPage/>}/>
-            <Route path="/sales" element={<SalesPage />} />
-            <Route path="/add-sale" element={<SalesFormPages />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/catalogo" element={<CatalogoPage />} />
            
