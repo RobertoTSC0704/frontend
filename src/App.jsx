@@ -11,14 +11,14 @@ import CatalogoPage from './pages/CatalogoPage';
 import {ProductsProvider} from './context/ProductContext';
 import NavBar from './components/Navbar';
 import NotFound from './pages/NotFound';
-import { SalesProvider } from './context/SalesContext';
+
 
 
 function App() {
   return (
     <AuthProvider>
       <ProductsProvider>
-        <SalesProvider>
+       
         <BrowserRouter
           future = {{
             v7_startTransition:true,
@@ -48,7 +48,7 @@ function App() {
           </Routes>
           </main>
         </BrowserRouter>
-        </SalesProvider>
+     
       </ProductsProvider>
     </AuthProvider>
   )

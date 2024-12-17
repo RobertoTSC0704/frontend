@@ -9,6 +9,7 @@ function ProductsPage(){
   // después de que se cargue el componente
   useEffect(() => {
     getProducts();
+    console.log(products);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (products.length==0)
