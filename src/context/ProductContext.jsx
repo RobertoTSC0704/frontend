@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import PropTypes from "prop-types";
+
 import { createProductRequest, 
          getProductsRequest, 
          deleteProductRequest, 
@@ -15,6 +16,7 @@ export const useProducts = () => {
         throw new Error("UseProducts debe estar definido en un contexto");
     }
     return context;
+
 };
 
 export function ProductsProvider({ children }) {

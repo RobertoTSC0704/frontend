@@ -12,7 +12,6 @@ import {
   IoLogOut,
   IoPerson,
   IoChevronDownSharp,
-  IoBagAdd,
   IoBagSharp,
 } from "react-icons/io5";
 
@@ -54,23 +53,11 @@ function Navbar() {
                       }}
                     >
                       <IoBagSharp className="fill-white/30" size={30} />
-                      Listar Productos
-                    </button>
-                  </MenuItem>
-
-                  {/* Agregar Productos */}
-                  <MenuItem>
-                    <button
-                      className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
-                      onClick={() => {
-                        navigate("/add-product");
-                      }}
-                    >
-                      <IoBagAdd className="fill-white/30" size={30} />
                       Agregar Producto
                     </button>
                   </MenuItem>
 
+              
                   {/* Nuevo: Enlace al Catálogo */}
                   <MenuItem>
                     <button

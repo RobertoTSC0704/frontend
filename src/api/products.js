@@ -18,4 +18,4 @@ export const createProductRequest = (product) =>
 export const deleteProductRequest = (id) => axios.delete('/products/' + id);
 
 // Llamada al API para editar un producto
-export const updateProductRequest = (id, product) => axios.put('/products/' + id, product);
+export const updateProductRequest = (id, product) => axios.put('/products/' + id, product); 

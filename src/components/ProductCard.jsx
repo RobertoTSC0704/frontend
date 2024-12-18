@@ -8,6 +8,9 @@ function ProductCard({ product }) {
     const server = import.meta.env.VITE_BASE_URL+"/img/";
     const{deleteProduct} = useProducts()
 
+
+
+    
     return (
         <div className="bg-zinc-800 max-w-md w-full p-10 rounded-sm">
             <header className="flex justify-between">
